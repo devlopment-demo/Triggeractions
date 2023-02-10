@@ -4,11 +4,14 @@ on: workflow_dispatch
 jobs: 
   trigger-test:
     runs-on: ubuntu-latest
+    startegy:
+      matrix:
+        repo: ['devlopment-demo/devlopmentaction', 'devlopment-demo/devrepC']
     steps: 
       - name: trigger automation test in another repo 
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.ACTIONTOKEN1 }}
-          repository: ['devlopment-demo/devlopmentaction', 'devlopment-demo/devrepC']
+          repository: ${{ matrix.repo }}
           event-type: my-event
           client-payload: '{"github": ${{ tojson(github) }}}'
