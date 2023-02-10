@@ -1,17 +1,20 @@
 #devlopment repository
 name: trigger test in another reposirotys
 on: workflow_dispatch
-jobs: 
-  trigger-test:
-    runs-on: ubuntu-latest
-    Strategy :
+jobs:
+  build:
+    # Main workflow job that builds, tests, etc.
+
+  dispatch:
+    needs: build
+    strategy:
       matrix:
         repo: ['devlopment-demo/devlopmentaction', 'devlopment-demo/devrepC']
-    steps: 
-      - name: trigger automation test in another repo 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.ACTIONTOKEN1 }}
           repository: ${{ matrix.repo }}
           event-type: my-event
-          client-payload: '{"github": ${{ tojson(github) }}}'
