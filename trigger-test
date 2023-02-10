@@ -1,0 +1,14 @@
+#devlopment repository
+name: trigger test in another reposiroty
+on: workflow_dispatch
+jobs: 
+  trigger-test:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: trigger automation test in another repo 
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.ACTIONTOKEN1}}
+          repository: devlopment-demo/Triggeractionsmain
+          event-type: my-event
+          clint-payload: '{"github": ${{ tojson(github)}}}'
