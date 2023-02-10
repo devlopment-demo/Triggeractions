@@ -4,7 +4,7 @@ on: workflow_dispatch
 jobs: 
   trigger-test:
     runs-on: ubuntu-latest
-    startegy:
+    Strategy :
       matrix:
         repo: ['devlopment-demo/devlopmentaction', 'devlopment-demo/devrepC']
     steps: 
