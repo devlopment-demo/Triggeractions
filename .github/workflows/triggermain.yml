@@ -9,7 +9,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.ACTIONTOKEN1 }}
-          repository: devlopment-demo/devlopmentaction
-          repository: devlopment-demo/devrepC
+          repository: ['devlopment-demo/devlopmentaction', 'devlopment-demo/devrepC']
           event-type: my-event
           client-payload: '{"github": ${{ tojson(github) }}}'
