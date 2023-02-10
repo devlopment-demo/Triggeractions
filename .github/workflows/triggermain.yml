@@ -10,5 +10,6 @@ jobs:
         with:
           token: ${{ secrets.ACTIONTOKEN1 }}
           repository: devlopment-demo/devlopmentaction
+          repository: devlopment-demo/devrepC
           event-type: my-event
           client-payload: '{"github": ${{ tojson(github) }}}'
