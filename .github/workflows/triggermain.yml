@@ -2,11 +2,8 @@
 name: trigger test in another reposirotys
 on: workflow_dispatch
 jobs:
-  build:
-    # Main workflow job that builds, tests, etc.
 
   dispatch:
-    needs: build
     strategy:
       matrix:
         repo: ['devlopment-demo/devlopmentaction', 'devlopment-demo/devrepC']
