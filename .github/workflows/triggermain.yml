@@ -8,7 +8,7 @@ jobs:
       - name: trigger automation test in another repo 
         uses: peter-evans/repository-dispatch@v2
         with:
-          token: ${{ secrets.ACTIONTOKEN1}}
-          repository: devlopment-demo/Triggeractionsmain
+          token: ${{ secrets.ACTIONTOKEN1 }}
+          repository: devlopment-demo/devlopmentaction
           event-type: my-event
-          clint-payload: '{"github": ${{ tojson(github)}}}'
+          client-payload: '{"github": ${{ tojson(github) }}}'
