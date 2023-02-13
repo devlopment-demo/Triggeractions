@@ -15,19 +15,16 @@ jobs:
           token: ${{ secrets.ACTIONTOKEN1 }}
           repository: ${{ matrix.repo }}
           event-type: my-event
-          
-    strategy1:
-      fail-fast: true
-
-  notify:
-    needs: build
-    if: always()
-    uses: actions/slack@v3
-    with:
-      status: failure
-      text: "Build failed for commit ${{ github.sha }} on branch ${{ github.ref }} due to a failure in the workflow for Repo ${{ matrix.repo }}."
-    if: ${{ job.status == 'failure' }}
-
-
-
-
+      - name: Check status of other workflows
+        run: |
+          for repo in ${{ matrix.repo }}; do
+          status=$(curl \
+          -s \
+          -H "Authorization: Bearer ${{ secrets.ACTIONTOKEN1 }}" \
+           https://api.github.com/repos/:owner/$repo/actions/workflows/workflow.yml/runs \
+          | jq -r '.workflow_runs[0].conclusion')
+          if [ "$status" != "success" ]; then
+          # Send error notification to repo A
+          fi
+          done
+      
