@@ -1,5 +1,5 @@
 #devlopment repository
-name: trigger test in another reposirotys
+name: trigger test in another reposiroty
 on: workflow_dispatch
 jobs:
 
