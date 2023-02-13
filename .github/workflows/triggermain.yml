@@ -15,3 +15,15 @@ jobs:
           token: ${{ secrets.ACTIONTOKEN1 }}
           repository: ${{ matrix.repo }}
           event-type: my-event
+          if [[ $conclusion == "\"success\"" && $status == "\"completed\"" ]]
+then
+  echo "Yes, success"
+else
+  # Alternative "failure"
+  echo "Conclusion is not success, its [$conclusion]."
+  if [ "$propagate_failure" = true ]
+  then
+    echo "Propagating failure to upstream job"
+    exit 1
+  fi
+fi
