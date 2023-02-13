@@ -15,7 +15,8 @@ jobs:
           token: ${{ secrets.ACTIONTOKEN1 }}
           repository: ${{ matrix.repo }}
           event-type: my-event
-          if [[ $conclusion == "\"success\"" && $status == "\"completed\"" ]]
+if [[ $conclusion == "\"success\"" && $status == "\"completed\"" ]]
+
 then
   echo "Yes, success"
 else
